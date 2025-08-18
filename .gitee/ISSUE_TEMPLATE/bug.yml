@@ -7,12 +7,12 @@ body:
     attributes:
       value: |
         感谢对项目的支持与关注。在提出任务之前，请确保你已查看相关文档并查看清单无相关任务：
-        - https://gitee.com/ccf-ai-infra/opengrow/issues
+        - https://gitee.com/ccf-ai-infra/GPUCodeForces/issues
   - type: checkboxes
     attributes:
       label: 这个任务是否已经存在？
       options:
-        - label: 我已经搜索过现有的任务 (https://gitee.com/ccf-ai-infra/opengrow/issues)
+        - label: 我已经搜索过现有的任务 (https://gitee.com/ccf-ai-infra/GPUCodeForces/issues)
           required: true
   - type: textarea
     attributes:
