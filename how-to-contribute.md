@@ -13,7 +13,7 @@
 - **步骤**：
   - 在您的本地机器上，使用`git clone`命令将项目仓库Fork的仓库克隆到本地。
     ```sh
-    git clone https://gitee.com/ccf-ai-infra/GPUKernelContest.git
+    git clone https://gitee.com/giteeuseid/GPUKernelContest.git
     ```
     备注：`giteeuseid替换您的url`。
 
