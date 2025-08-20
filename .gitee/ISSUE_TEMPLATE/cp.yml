@@ -30,7 +30,7 @@ body:
       required: false
   - type: checkboxes
     attributes:
-      label: 希望他人来完成赛题
+      label: 推荐其它选手完成【如选否，请创建后assign赛题给自己】
       options:
-        - label: 我有意向他人来完成该赛题，并希望推荐给别人完成。
+        - label: 是否希望推荐给别人完成该赛题。
           required: false
