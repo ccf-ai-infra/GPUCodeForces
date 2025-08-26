@@ -97,3 +97,7 @@
 
 如需更多信息或格式说明，请查看官方文档或在本仓库提交[想法](https://gitee.com/ccf-ai-infra/GPUCodeForces/issues/new?template=feature.yml)进行讨论。  
 祝你挑战成功，贡献出高质量的 GPU 评测数据集！🚀
+
+## FAQ
+
+[第一季FAQ参考](FAQ.md)
