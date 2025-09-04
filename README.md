@@ -37,7 +37,7 @@
 
 <image src="./images/readme_issue_id.png">
 
-*   回到赛事主页，在仓库界面右上角选择fork至自己的仓库下：
+*   回到赛事主页，在仓库界面右上角选择fork至自己的仓库：
     
 
 <image src="./images/readme_project_fork.png">
