@@ -92,6 +92,8 @@
 
     * 最终，成功提交的代码会合并到 S1/#your_issue id 下，并且你的相关pr也会关闭。就像下面这样：
     <img src="./images/readme_sample_merge.png">
+  
+  🌳一份完整的提交流程如上，期待各位自由发挥，赛出风采与水平！
 
 
 ### 📦 提交PR内容
