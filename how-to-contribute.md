@@ -35,26 +35,17 @@
   提交完成后，返回Issue主页可以看到自己的提交记录，可以复制Issue id进行保存：
   <image src="./images/readme_issue_id.png">
 
-  - 在本地电脑进入克隆的仓库目录，并进行初始化。
+  - 在本地电脑进入克隆的仓库目录，创建一个新的分支来（例如：`dev`分支）进行您的赛题的创作或者修订。
     ```sh
-    cd GPUKernelContest
-    git init
-    git remote add origin https://gitee.com/your-name/GPUCodeForces.git
-    git remote -v
-    #成功后应显示：
-    #origin  https://gitee.com/your-name/GPUCodeForces.git (fetch)
-    #origin  https://gitee.com/your-name/GPUCodeForces.git (push)
-    ```
-  - 创建一个新的分支来（例如：`dev`分支）进行您的项目创作或者修订。
-    ```sh
+    cd GPUCodeForces
     git checkout -b dev
     ```
 
 ## 4. 进行修改
-- **目的**：在您的新分支上`dev`进行项目创作或者修订。
+- **目的**：在您的新分支上`dev`进行赛题的创作或者修订。
 - **步骤**：
-  - 在您的`dev`分支上进行项目创作或者修订。
-  - 修改完成后，添加并提交您的更改。
+  - 在您的`dev`分支上进行赛题的创作或者修订。
+  - 修改完成后，添加并提交您的赛题成果。
     ```sh
     git add .
     git commit -m "描述您的修改，如需要关联PR，通过fixes, closes, resolved等关键字关闭"
@@ -72,7 +63,7 @@
   - 将您的修改推送到您Fork的仓库。
     ```sh
     git push origin dev
-    #这里填写你创建的目录名，不一定为dev
+    #这里填写你创建的分支，不一定为dev
     ```
 
 ## 6. 创建Pull Request
