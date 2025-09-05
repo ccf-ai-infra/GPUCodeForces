@@ -4,7 +4,7 @@
 
 ---
 
-## 🧠 比赛背景简介
+## 💻 比赛背景简介
 
 在 AI 模型开发和部署中，**GPU 性能评测**是一个非常重要的环节。   不同 GPU、不同深度学习框架（如 PyTorch、TensorFlow、PaddlePaddle 等）在运行相同任务时，速度、吞吐量、内存占用等表现差异很大。   本次挑战赛希望通过社区的力量，**构建一个标准化、带权重的评测数据集**，让 GPU 性能比较更加科学、公正。
 
@@ -21,64 +21,80 @@
 
 ---
 
-## 📥 如何参与提交？
+## 📥 参赛流程
 
-### 📝初始化仓库及提交流程
+* 进入[GPUCodeForces赛事首页](https://gitee.com/ccf-ai-infra/GPUCodeForces)，登录参与本期比赛的Gitee账号，完成一份成功合并到仓库内的提交即为参赛成功！时间自由，方法自由，只要有灵感就可以动手开code~
 
-*   进入到赛事首页：[GPUCodeForces赛事首页](https://gitee.com/ccf-ai-infra/GPUCodeForces)，点击[Issues](https://gitee.com/ccf-ai-infra/GPUCodeForces/issues/new/choose)，选择赛题\[CP\]->立即开始：
-    
+   ### 🌰举个栗子
 
-<image src="./images/readme_issue_create.png">
-然后按照模板格式填写相关信息后提交即可。在最后一个选项“推荐其他选手完成”这里，若有团队则可框选，若是自身完成则不用框选：
+   * 登录or注册自己的Gitee账号后，进入赛事首页查看仓库内的文件内容。仔细阅读[how-to-contribute.md](https://gitee.com/ccf-ai-infra/GPUCodeForces/blob/main/how-to-contribute.md)，完成CLA签署，并熟悉提交流程。
 
-<image src="./images/readme_issue_write.png">
+   * 看到仓库内文件，有一个example文件夹：
 
-提交完成后，返回Issue主页可以看到自己的提交记录，可以复制Issue id进行保存：
+     <img src="./images/readme_sample_check.png">
+   
+     这是我们提供的一个样例，接下来我们在这个基础上进行一次完整的算子优化的提交（我们鼓励大家自己找到更好的算子并优化）。
 
-<image src="./images/readme_issue_id.png">
+   * 我们将样例clone到自己电脑上，
+     并关注四份文件：  torchcode.py、prompt.txt、cudacode_ori.py、example_cudacode.py，最终需要提交的代码文件正是这四个。本次比赛在[模力方舟](https://ai.gitee.com/compute)平台上使用沐曦算力，需要使用算力券购买实例：
 
-*   回到赛事主页，在仓库界面右上角选择fork至自己的仓库下：
-    
+     <img src="./images/readme_git_compute.png">
 
-<image src="./images/readme_project_fork.png">
+     接着便可以在云端实例上进行代码修改。相关算力券的领取方式请见[算力平台使用说明](https://ai.gitee.com/docs/compute/container)、[算力券兑换发放和兑换](https://ai.gitee.com/docs/billing/coupons)。
 
-<image src="./images/readme_project_check.png">
+   * 然后在该比赛仓库新建一个issue，填写赛题。这里我们是对example-001算子优化，因此issue的主题就可以是“对001-example数据集进行性能优化”：
 
-然后把源项目克隆至本地，文件路径可以根据自己的喜好来：
+     <img src="./images/readme_sample_issue.png">
+   
+     可以看到这里有一个“#ICVXKH”，这是issue id，你的算子优化、新算子都应该绑定一个独立的issue id（最终有多少份issue被审核通过，就表示提交成功了多少份）。在即将提交的时候，在该赛题仓库的S1文件夹下新建一个以该id命名（无需带#号）的文件夹，该文件夹内容为四份必要文件和其他视参赛者情况需要补充的材料（如readme文件、用到的其他数据集等）：
 
-<image src="./images/readme_project_clone.png">
+     <img src="./images/readme_sample_folder.png">
 
-在克隆仓库或本地文件夹内都可以大展你的身手，进行算子优化了🎉！
+   * 准备工作就绪，接下来看到example-001内的代码：
 
-*   准备好了代码及各项必需文件后，在本地文件夹内启动git bash，进行初始化和远程仓库连接：
-    
+     <span style="background-color: grey; color: black; user-select: none;">example_torchcode.py</span>：基准模型（Baseline）。示例提供一个简单的PyTorch模型，只包含一个ReLU激活函数。
+      
+      * <span style="background-color: grey; color: black; user-select: none;">get_inputs()</span>：生成模型运行时需要的输入数据。
+      * <span style="background-color: grey; color: black; user-select: none;">get_init_inputs()</span>：成模型初始化所需的参数（这里就是权重矩阵 weight）。
 
-```shell
-git init
-git remote add origin https://gitee.com/your-name/GPUCodeForces.git
-git remote -v
-#成功后应显示：
-#origin  https://gitee.com/your-name/GPUCodeForces.git (fetch)
-#origin  https://gitee.com/your-name/GPUCodeForces.git (push)
-```
+     <span style="background-color: grey; color: black; user-select: none;">example_cudacode.py</span>：优化模型。示例使用PyTorch的load_inline功能直接编译和加载CUDA代码，创建了一个新的模型类，使用自定义CUDA实现替代PyTorch的ReLU。
 
-*   然后将本地优化好的算子仓库存入到暂存区，并进行上传：
-    
+     <span style="background-color: grey; color: black; user-select: none;">run_code.py</span>：验证和性能测试脚本。验证自定义CUDA实现与原始PyTorch实现的数值精度一致性，比较两种实现的性能，计算加速比。
 
-```shell
-git add . 
-git commit -m "填写本次提交记录，如'第一次提交'"
-git push -u origin master 
-#最后一步需要根据自身的实际仓库分支来，一般为master，也可能为main或者你自定义的目录名称，可以使用 git push --upstream orgin 目录名
-```
+     <span style="background-color: grey; color: black; user-select: none;">prompt.txt</span>：这里给予参赛者一些提示：
 
-*   上传成功后，回到自己的仓库主页，选择”新建Pull Request“：
-    
+       *  要求编写自定义CUDA内核来替换PyTorch算子以获得加速
 
-<image src="./images/readme_pr_create.png">
-然后在上传界面选择自己更新项目的分支，选择合并即可：
+       *  可以自由选择替换哪些算子，考虑算子融合机会
 
-<image src="./images/readme_pr_upload.png">
+       *  提供了示例语法和内联嵌入自定义CUDA算子的方法
+ 
+       * 给出了需要优化的模型架构（简单的ReLU模型）
+
+    * 然后我们来优化这个算子：
+
+       <span style="background-color: skyblue; color: black; user-select: none;">example_torchcode.py</span>：从单一的ReLU操作扩展为矩阵乘法 + ReLU的复合操作，增加可学习的权重参数(weight)，指定输入张量的预期形状和输出形状。
+
+       <span style=" background-color: skyblue; color: black; user-select: none;">example_cudacode.py</span>：采用部分替换策略，只将ReLU替换为CUDA实现，保留PyTorch的高度优化矩阵乘法。
+
+       <span style="background-color: skyblue; color: black; user-select: none;">run_code.py</span>：增加了最大差异和平均差异计算，使用更严格的容差(1e-05)，增加了预热步骤，确保GPU状态稳定；增加迭代次数(1000次)提高测量准确性。
+
+       <span style="background-color: skyblue; color: black; user-select: none;">prompt.txt</span>：展示了加法操作和ReLU操作两种不同的优化示例,强调了可以自由选择优化策略，包括算子融合等高级技术。
+
+    * 优化好后，可以在模力方舟的实例上运行:
+
+       ```sh
+       python run_code.py
+       ```
+      确保能够正确输出结果后再准备提交。
+
+    * 接下来将优化好的代码保存到本地，然后参照[how-to-contribute.md](https://gitee.com/ccf-ai-infra/GPUCodeForces/blob/main/how-to-contribute.md)的指引进行代码仓库的提交与合并。
+
+    * 最终，成功提交的代码会合并到 S1/#your_issue id 下，并且你的相关pr也会关闭。就像下面这样：
+    <img src="./images/readme_sample_merge.png">
+  
+  🌳一份完整的提交流程如上，期待各位自由发挥，赛出风采与水平！
+
 
 ### 📦 提交PR内容
 
@@ -114,7 +130,7 @@ git push -u origin master
 
 ```
 
-### 💻审核流程
+### ⭐审核流程
 
 *   在一切文件都准备好并且提交后，在对应的PR下会得到回复：
     
