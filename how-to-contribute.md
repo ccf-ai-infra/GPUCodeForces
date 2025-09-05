@@ -18,7 +18,6 @@
 - **目的**：将您Fork的项目仓库克隆到本地，以便在本地进行修改。
 - **步骤**：
   - 在您的本地机器上，使用`git clone`命令将项目仓库Fork的仓库克隆到本地。
-  <img src="./images/readme_project_clone.png">
     ```sh
     git clone https://gitee.com/giteeuseid/GPUCodeForces.git
     ```
