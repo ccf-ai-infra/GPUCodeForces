@@ -52,7 +52,7 @@
 
    * 准备工作就绪，接下来看到example-001内的代码：
 
-     <span style="background-color: grey; color: black; user-select: none;">example_torchcode.py</span>：基准模型（Baseline）。示例提供一个简单的PyTorch模型，只包含一个ReLU激活函数。
+     **example_torchcode.py：**基准模型（Baseline）。示例提供一个简单的PyTorch模型，只包含一个ReLU激活函数。
       
       * <span style="background-color: grey; color: black; user-select: none;">get_inputs()</span>：生成模型运行时需要的输入数据。
       * <span style="background-color: grey; color: black; user-select: none;">get_init_inputs()</span>：成模型初始化所需的参数（这里就是权重矩阵 weight）。
