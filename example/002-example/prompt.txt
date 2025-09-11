@@ -1,0 +1,31 @@
+Write a custom CUDA kernel that fuses matrix multiplication with GELU activation.
+
+The original architecture performs:
+1. Matrix multiplication: output = input @ weight.T + bias
+2. GELU activation: gelu_output = gelu(output)
+
+You should fuse these two operations into a single CUDA kernel to avoid:
+- Storing the intermediate matrix multiplication result to global memory
+- Reading it back for the GELU operation
+
+The GELU activation function can be approximated as:
+  gelu(x) = 0.5 * x * (1 + tanh(sqrt(2/π) * (x + 0.044715 * x^3)))
+
+Considerations:
+- Use 2D grid and block dimensions to parallelize over batch size and hidden features
+- Implement efficient shared memory usage for tiling if possible
+- Ensure numerical stability and precision
+
+You are given the following architecture:
+
+import torch
+import torch.nn as nn
+
+class Model(nn.Module):
+    def __init__(self, in_features=16384, hidden_features=4096):
+        super(Model, self).__init__()
+        self.linear = nn.Linear(in_features, hidden_features)
+    
+    def forward(self, x):
+        x = self.linear(x)
+        return torch.nn.functional.gelu(x)
