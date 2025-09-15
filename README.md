@@ -1,4 +1,4 @@
-# 评测数据集生成挑战赛（GPUCodeForces）
+# 子赛题一、评测数据集生成挑战赛（GPUCodeForces）
 
 欢迎参加 **评测数据集生成挑战赛** 📊！   本比赛旨在构建一个标准化、可用于 GPU 性能测试的评测数据集，帮助开发者更高效地比较不同硬件和框架的性能表现。
 
@@ -23,11 +23,11 @@
 
 ## 📥 参赛流程
 
-* 进入[GPUCodeForces赛事首页](https://gitee.com/ccf-ai-infra/GPUCodeForces)，登录参与本期比赛的Gitee账号，完成一份成功合并到仓库内的提交即为参赛成功！时间自由，方法自由，只要有灵感就可以动手开code~
+* 进入[GPUCodeForces赛事首页](https://gitlink.com/ccf-ai-infra/GPUCodeForces)，登录参与本期比赛的Gitee账号，完成一份成功合并到仓库内的提交即为参赛成功！时间自由，方法自由，只要有灵感就可以动手开code~
 
    ### 🌰举个栗子
 
-   * 登录or注册自己的Gitee账号后，进入赛事首页查看仓库内的文件内容。仔细阅读[how-to-contribute.md](https://gitee.com/ccf-ai-infra/GPUCodeForces/blob/main/how-to-contribute.md)，完成CLA签署，并熟悉提交流程。
+   * 登录or注册自己的Gitee账号后，进入赛事首页查看仓库内的文件内容。仔细阅读[how-to-contribute.md](https://gitlink.com/ccf-ai-infra/GPUCodeForces/tree/main/how-to-contribute.md)，完成CLA签署，并熟悉提交流程。
 
    * 看到仓库内文件，有一个example文件夹：
 
@@ -71,15 +71,9 @@
  
        * 给出了需要优化的模型架构（简单的ReLU模型）
 
-    * 然后我们来优化这个算子：
-
-       <span style="background-color: skyblue; color: black; user-select: none;">example_torchcode.py</span>：从单一的ReLU操作扩展为矩阵乘法 + ReLU的复合操作，增加可学习的权重参数(weight)，指定输入张量的预期形状和输出形状。
-
-       <span style=" background-color: skyblue; color: black; user-select: none;">example_cudacode.py</span>：采用部分替换策略，只将ReLU替换为CUDA实现，保留PyTorch的高度优化矩阵乘法。
-
-       <span style="background-color: skyblue; color: black; user-select: none;">run_code.py</span>：增加了最大差异和平均差异计算，使用更严格的容差(1e-05)，增加了预热步骤，确保GPU状态稳定；增加迭代次数(1000次)提高测量准确性。
-
-       <span style="background-color: skyblue; color: black; user-select: none;">prompt.txt</span>：展示了加法操作和ReLU操作两种不同的优化示例,强调了可以自由选择优化策略，包括算子融合等高级技术。
+    * 然后参照example-001文件夹创建自己的文件夹：提出新的torch cude对，其中torch可来源于PyTorch、PaddlePaddle、TensorFlow、Jax、MMCV、Transformers等框架，可以是单个算子也可以是多个算子融合。cuda代码可自己编写或者参照prompt.txt让LLM辅助编写
+      1. 修改torchcode.py：按照example_torchcode.py格式，在Model的__init__和forward中放入目标torch代码，注意保留get_inputs()和get_init_inputs()函数
+      2. 修改cudacode.py：修改cudacode.py里的load_inline和ModelNew，cuda代码核心实现放在source字段中
 
     * 优化好后，可以在模力方舟的实例上运行:
 
@@ -88,7 +82,7 @@
        ```
       确保能够正确输出结果后再准备提交。
 
-    * 接下来将优化好的代码保存到本地，然后参照[how-to-contribute.md](https://gitee.com/ccf-ai-infra/GPUCodeForces/blob/main/how-to-contribute.md)的指引进行代码仓库的提交与合并。
+    * 接下来将优化好的代码保存到本地，然后参照[how-to-contribute.md](https://gitlink.org.cn/ccf-ai-infra/GPUCodeForces/tree/main/how-to-contribute.md)的指引进行代码仓库的提交与合并。
 
     * 最终，成功提交的代码会合并到 S1/#your_issue id 下，并且你的相关pr也会关闭。就像下面这样：
     <img src="./images/readme_sample_merge.png">
@@ -98,7 +92,7 @@
 
 ### 📦 提交PR内容
 
-*   **一个PR包含样本的目录** [提交样例](https://gitee.com/ccf-ai-infra/GPUCodeForces/tree/main/example/001-example)
+*   **一个PR包含样本的目录** [提交样例](https://gitlink.org.cn/ccf-ai-infra/GPUCodeForces/tree/main/example/001-example)
     
 *   每个提交目录建议包含如下：
     
@@ -110,7 +104,7 @@
         
     4.  **其它文件（或目录）：** prompt（利用LLM从torch代码生成cuda代码的prompt示例）或者其它优化代码
         
-    5.  **PR目录说明文件：** https://gitee.com/ccf-ai-infra/GPUCodeForces/blob/main/example/001-example/readme.md
+    5.  **PR目录说明文件：** https://gitlink.org.cn/ccf-ai-infra/GPUCodeForces/tree/main/example/001-example/readme.md
         
 
 ### 📦 提交PR的格式
@@ -211,7 +205,7 @@
 
 ## 📬 联系与帮助
 
-如需更多信息或格式说明，请查看官方文档或在本仓库提交[想法](https://gitee.com/ccf-ai-infra/GPUCodeForces/issues/new?template=feature.yml)进行讨论。  祝你挑战成功，贡献出高质量的 GPU 评测数据集！🚀
+如需更多信息或格式说明，请查看官方文档或在本仓库提交[想法](https://gitlink.org.cn/ccf-ai-infra/GPUCodeForces/issues/new)进行讨论。  祝你挑战成功，贡献出高质量的 GPU 评测数据集！🚀
 
 ## FAQ
 
