@@ -27,7 +27,7 @@
 
    ### 🌰举个栗子
 
-   * 登录or注册自己的Gitee账号后，进入赛事首页查看仓库内的文件内容。仔细阅读[how-to-contribute.md](https://gitlink.com/ccf-ai-infra/GPUCodeForces/tree/main/how-to-contribute.md)，完成CLA签署，并熟悉提交流程。
+   * 登录or注册自己的Gitlink账号后，进入赛事首页查看仓库内的文件内容。仔细阅读[how-to-contribute.md](https://gitlink.com/ccf-ai-infra/GPUCodeForces/tree/main/how-to-contribute.md)，完成CLA签署，并熟悉提交流程。
 
    * 看到仓库内文件，有一个example文件夹：
 
@@ -36,7 +36,7 @@
      这是我们提供的一个样例，接下来我们在这个基础上进行一次完整的算子优化的提交（我们鼓励大家自己找到更好的算子并优化）。
 
    * 我们将样例clone到自己电脑上，
-     并关注四份文件：  torchcode.py、prompt.txt、cudacode_ori.py、example_cudacode.py，最终需要提交的代码文件正是这四个。本次比赛在[模力方舟](https://ai.gitee.com/compute)平台上使用沐曦算力，需要使用算力券购买实例：
+     并关注四份文件：  torchcode.py、prompt.txt、cudacode_ori.py、example_cudacode.py，最终需要提交的代码文件正是这四个。本次比赛在[模力方舟](https://ai.gitee.com/compute)平台上使用算力券购买容器实例：
 
      <img src="./images/readme_git_compute.png">
 
@@ -46,7 +46,7 @@
 
      <img src="./images/readme_sample_issue.png">
    
-     可以看到这里有一个“#ICVXKH”，这是issue id，你的算子优化、新算子都应该绑定一个独立的issue id（最终有多少份issue被审核通过，就表示提交成功了多少份）。在即将提交的时候，在该赛题仓库的S1文件夹下新建一个以该id命名（无需带#号）的文件夹，该文件夹内容为四份必要文件和其他视参赛者情况需要补充的材料（如readme文件、用到的其他数据集等）：
+     可以看到这里有一个“#2”，这是issue id，你的算子优化、新算子都应该绑定一个独立的issue id（最终有多少份issue被审核通过，就表示提交成功了多少份）。在即将提交的时候，在该赛题仓库的S1文件夹下新建一个以该id命名（无需带#号）的文件夹，该文件夹内容为四份必要文件和其他视参赛者情况需要补充的材料（如readme文件、用到的其他数据集等）：
 
      <img src="./images/readme_sample_folder.png">
 
